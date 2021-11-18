@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { callApi } from "../util/api";
 
 const Register = ({ setToken, setUsers }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-  const params = useParams();
 
   return (
     <>
@@ -56,16 +54,7 @@ const Register = ({ setToken, setUsers }) => {
           onChange={(event) => setPassword(event.target.value)}
         ></input>
         <hr></hr>
-        {params.method === "register" ? (
-          <input
-            type="password"
-            placeholder="confirm password"
-            value={confirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
-          ></input>
-        ) : (
-          ""
-        )}
+
         <button type="submit" disabled={!password || !username}>
           Submit
         </button>
