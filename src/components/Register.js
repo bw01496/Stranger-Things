@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { callApi } from "../util/api";
+import React, { useState } from "react"
+import { useNavigate } from "react-router"
+import { callApi } from "../util/api"
 
 const Register = ({ setToken, setUsers }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   return (
     <>
@@ -13,28 +13,28 @@ const Register = ({ setToken, setUsers }) => {
 
       <form
         onSubmit={async (event) => {
-          event.preventDefault();
+          event.preventDefault()
           const respObj = await callApi({
             url: `/users/register`,
             method: "POST",
             body: {
               user: {
                 username,
-                password,
-              },
-            },
-          });
-          console.log(respObj);
+                password
+              }
+            }
+          })
+          console.log(respObj)
           if (respObj.data) {
             const userResp = await callApi({
               url: "/users/me",
-              token: respObj.data.token,
-            });
-            console.log(userResp.data.username);
-            setToken(respObj.data.token);
-            setUsers(userResp.data.username);
+              token: respObj.data.token
+            })
+            console.log(userResp.data.username)
+            setToken(respObj.data.token)
+            setUsers(userResp.data.username)
             if (respObj.data.token) {
-              navigate("/profile");
+              navigate("/profile")
             }
           }
         }}
@@ -60,7 +60,7 @@ const Register = ({ setToken, setUsers }) => {
         </button>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

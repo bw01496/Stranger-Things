@@ -1,3 +1,8 @@
+/* I know you probably don't want to lose an entire file like this _just in case_ you find a way to make it work. BUT, it
+ * is entirely possible to retrieve this file from an earlier git commit. You should still delete unused files just as you
+ * should remove unused variables before submission. If you have questions and want me to look over this code, please let
+ * explicitly rather than leaving the file here. */
+
 // import React, { useState } from "react";
 // import { callApi } from "../util/api";
 

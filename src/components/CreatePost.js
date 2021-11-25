@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { callApi } from "../util/api";
+import React, { useState } from "react"
+import { callApi } from "../util/api"
 
 const CreatePosts = ({ token, setPosts }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [location, setLocation] = useState("");
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [price, setPrice] = useState("")
+  const [location, setLocation] = useState("")
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log({ title, description, price, location });
+    event.preventDefault()
+    console.log({ title, description, price, location })
+    /* This API call below appears to be useless. Since it's on a remote server and thus unpredictable and potentially
+     * slow, you should avoid doing unnecessary asynchronous operations like this */
     const response = await callApi({
       url: "/posts",
       method: "POST",
@@ -19,16 +21,17 @@ const CreatePosts = ({ token, setPosts }) => {
           title,
           description,
           price,
-          location,
-        },
-      },
-    });
-    console.log("response: ", response);
-    const respPost = await callApi({ url: "/posts", token });
-    console.log("respPost: ", respPost);
-    console.log(setPosts);
-    setPosts(respPost.data.posts);
-  };
+          location
+        }
+      }
+    })
+    console.log("response: ", response)
+    // Check out utils/api.js for a note about `callApi()` and your handling of the `data` key
+    const respPost = await callApi({ url: "/posts", token })
+    console.log("respPost: ", respPost)
+    console.log(setPosts)
+    setPosts(respPost.data.posts)
+  }
   return (
     <>
       {token && <h3>Create a Post!</h3>}
@@ -75,7 +78,7 @@ const CreatePosts = ({ token, setPosts }) => {
         )}
       </form>
     </>
-  );
-};
+  )
+}
 
-export default CreatePosts;
+export default CreatePosts

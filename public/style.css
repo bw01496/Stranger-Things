@@ -11,11 +11,14 @@ body {
 }
 a {
   background-color: rgb(33, 120, 139);
+  /* An anchor tag should not have a border by default */
   border: none;
   color: lightgoldenrodyellow;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
+  /* You have the `display` property in here twice. Due to the 'cascading' nature of CSS, the later usages will overwrite
+   * the earlier ones! */
   display: inline-block;
   font-size: 16px;
   border-radius: 12px;

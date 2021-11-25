@@ -1,18 +1,18 @@
-import React from "react";
-import { callApi } from "../util/api";
-import { Link } from "react-router-dom";
+import React from "react"
+import { callApi } from "../util/api"
+import { Link } from "react-router-dom"
 
 const Posts = ({ posts, token, fetchPosts }) => {
   const handleDelete = async (postId) => {
-    console.log("url: ", `/posts/${postId}`);
+    console.log("url: ", `/posts/${postId}`)
     const respObj = await callApi({
       method: "DELETE",
       url: `/posts/${postId}`,
-      token,
-    });
-    console.log("respObj: ", respObj);
-    await fetchPosts();
-  };
+      token
+    })
+    console.log("respObj: ", respObj)
+    await fetchPosts()
+  }
 
   return (
     <>
@@ -47,7 +47,7 @@ const Posts = ({ posts, token, fetchPosts }) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Posts;
+export default Posts

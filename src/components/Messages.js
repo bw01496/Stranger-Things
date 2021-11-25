@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { callApi } from "../util/api";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react"
+import { callApi } from "../util/api"
+import { useLocation } from "react-router-dom"
 
 const Messages = ({ posts, token }) => {
-  const [message, setMessage] = useState("");
-  const location = useLocation();
-  const { id } = location.state;
+  const [message, setMessage] = useState("")
+  const location = useLocation()
+  const { id } = location.state
+
   async function sendMessage(message) {
     try {
       await callApi({
@@ -14,12 +15,12 @@ const Messages = ({ posts, token }) => {
         token,
         body: {
           message: {
-            content: message,
-          },
-        },
-      });
+            content: message
+          }
+        }
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -35,9 +36,9 @@ const Messages = ({ posts, token }) => {
             <h3>{post.location}</h3>
             <form
               onSubmit={async (event) => {
-                event.preventDefault();
-                sendMessage(message);
-                setMessage("");
+                event.preventDefault()
+                sendMessage(message)
+                setMessage("")
               }}
             >
               <input
@@ -52,6 +53,6 @@ const Messages = ({ posts, token }) => {
         ) : null
       )}
     </>
-  );
-};
-export default Messages;
+  )
+}
+export default Messages

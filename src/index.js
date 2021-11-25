@@ -1,46 +1,53 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useState } from "react"
+import ReactDOM from "react-dom"
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
-  useNavigate,
-} from "react-router-dom";
-import Login from "./components/Login";
-import Posts from "./components/Posts";
-import Register from "./components/Register";
-import CreatePost from "./components/CreatePost";
+  useNavigate
+} from "react-router-dom"
+import Login from "./components/Login"
+import Posts from "./components/Posts"
+import Register from "./components/Register"
+import CreatePost from "./components/CreatePost"
 
-import Profile from "./components/Profile";
-import Messages from "./components/Messages";
+import Profile from "./components/Profile"
+import Messages from "./components/Messages"
 
-const cohortName = "2108-ECE-RM-WEB-PT";
-const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}`;
+/* You have a lot of unused import/variables here. Always make sure to go through and clean up things like this before
+ * you're done. I don't just say this for my own sake - you will be expected to write clean and efficient code for work
+ * as well. It's best to get used to the practice now. Your code editor probably has a search function to find any
+ * console.log()'s to remove, and your linter will you show you syntactical errors like unused variables/imports. Finish
+ * it up with a formatter like prettier to make it more readable. */
 
-const App = ({}) => {
-  const [token, setToken] = useState("");
-  const [posts, setPosts] = useState([]);
-  const [user, setUsers] = useState("");
+const cohortName = "2108-ECE-RM-WEB-PT"
+const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}`
 
-  const [userId, setUserId] = useState("");
-  const [profile, setProfile] = useState({});
-  console.log(userId);
+/* You left an empty object in the parameters declared for `App` and it caused the app to break on my end. I removed it */
+const App = () => {
+  const [token, setToken] = useState("")
+  const [posts, setPosts] = useState([])
+  const [user, setUsers] = useState("")
 
-  const navigate = useNavigate();
+  const [userId, setUserId] = useState("")
+  const [profile, setProfile] = useState({})
+  console.log(userId)
+
+  const navigate = useNavigate()
   const fetchPosts = async () => {
-    const response = await fetch(`${APIURL}/posts`);
-    const respObj = await response.json();
-    const posts = respObj.data.posts;
-    if (posts) setPosts(posts);
-  };
+    const response = await fetch(`${APIURL}/posts`)
+    const respObj = await response.json()
+    const posts = respObj.data.posts
+    if (posts) setPosts(posts)
+  }
   useEffect(() => {
     try {
-      fetchPosts();
+      fetchPosts()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  }, [token]);
+  }, [token])
 
   return (
     <>
@@ -60,7 +67,7 @@ const App = ({}) => {
         <button
           className={token ? "" : "isLoggedIn"}
           onClick={() => {
-            navigate("/account/login");
+            navigate("/account/login")
           }}
         >
           Log Out!
@@ -107,12 +114,12 @@ const App = ({}) => {
         />
       </Routes>
     </>
-  );
-};
+  )
+}
 ReactDOM.render(
   <Router>
     <App />
   </Router>,
 
   document.getElementById("app")
-);
+)
